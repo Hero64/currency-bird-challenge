@@ -6,7 +6,7 @@ import { Props } from './types';
 
 import styles from './selector.module.css';
 
-const CountryCurrencySelector = (props: Props) => {
+const Selector = (props: Props) => {
   const { currencies = [], selectedCurrency, onCurrencyClick } = props;
 
   const [visible, setVisible] = useState(false);
@@ -58,4 +58,4 @@ const CountryCurrencySelector = (props: Props) => {
   );
 };
 
-export default CountryCurrencySelector;
+export default Selector;

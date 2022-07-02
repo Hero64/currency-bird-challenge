@@ -1,6 +1,6 @@
 import { ChangeEvent, KeyboardEvent, useId } from 'react';
 
-import CurrencySelector from './CurrencySelector';
+import Selector from './Selector';
 import { Props } from './types';
 
 import styles from './input.module.css';
@@ -22,6 +22,8 @@ const CurrencyInput = (props: Props) => {
       'ArrowLeft',
     ]);
 
+    console.log(e.key);
+
     if (!/[0-9]/.test(e.key) && !availableKeyboards.has(e.key)) {
       e.preventDefault();
     }
@@ -32,6 +34,7 @@ const CurrencyInput = (props: Props) => {
       <span className={styles.sign}>$</span>
       <input
         type="text"
+        id={id}
         value={value}
         className={styles.input}
         onChange={handleOnChange}
@@ -40,7 +43,7 @@ const CurrencyInput = (props: Props) => {
       <label htmlFor={id} className={styles.label}>
         {label}
       </label>
-      <CurrencySelector {...selectorProps} />
+      <Selector {...selectorProps} />
     </div>
   );
 };

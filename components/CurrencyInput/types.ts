@@ -1,4 +1,4 @@
-import { Props as CountrySelectorProps } from './CurrencySelector/types';
+import { Props as CountrySelectorProps } from './Selector/types';
 
 export interface Props extends CountrySelectorProps {
   value: string;

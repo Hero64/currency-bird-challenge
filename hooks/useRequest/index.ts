@@ -14,7 +14,7 @@ const useRequest = () => {
 
     const response = await fetch(`/api/${url}`, {
       method,
-      body: data,
+      body: JSON.stringify(data),
     });
     setLoading(false);
 

@@ -1,20 +1,20 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Head from 'next/head';
 
 import CurrencyInput from '@/components/CurrencyInput';
+import useRequest from '@/hooks/useRequest';
 
 import { CURRENCIES } from '@/constants/currencies';
 import { BaseCurrency } from '@/types/currency';
-import { Props } from './types';
+import { Props, Response, CurrencySendType } from './types';
 
 import styles from './home.module.css';
-import useRequest from '@/hooks/useRequest';
 
 export async function getStaticProps() {
   const currencies: BaseCurrency[] = CURRENCIES.map(
-    ({ name, abbr_name, flag_image }) => ({
+    ({ name, code, flag_image }) => ({
       name,
-      abbr_name,
+      code,
       flag_image,
     })
   );
@@ -29,23 +29,60 @@ export async function getStaticProps() {
 const Home = (props: Props) => {
   const { currencies } = props;
 
+  const timer = useRef<any>();
   const [currency, setCurrency] = useState(currencies[0]);
   const [sended, setSended] = useState(0);
   const [received, setReceived] = useState(0);
   const { request } = useRequest();
 
-  const handleOnCurrencyClick = (selectedCurrency: BaseCurrency) => {
-    setCurrency(selectedCurrency);
-  };
-
-  const handleOnSendedChange = async (value: number) => {
-    setSended(value);
-    await request('quote/send', {
+  const postCalculateQuote = async (
+    value: number,
+    type: CurrencySendType,
+    currencyCode: string,
+    setResult: (value: number) => void
+  ) => {
+    const { amount } = await request<Response>(`quote/${type}`, {
       method: 'POST',
       data: {
-        send: value,
+        amount: value,
+        currencyCode,
       },
     });
+
+    setResult(amount);
+  };
+
+  const calculateCurrencyAmount = (
+    value: number,
+    type: CurrencySendType,
+    setValue: (value: number) => void,
+    setResult: (value: number) => void
+  ) => {
+    timer.current && clearTimeout(timer.current);
+    setValue(value);
+    if (value === 0) {
+      setResult(0);
+      return;
+    }
+    timer.current = setTimeout(() => {
+      postCalculateQuote(value, type, currency.code, setResult);
+    }, 400);
+  };
+
+  const handleOnCurrencyClick = (selectedCurrency: BaseCurrency) => {
+    setCurrency(selectedCurrency);
+
+    if (received > 0) {
+      postCalculateQuote(received, 'receive', selectedCurrency.code, setSended);
+    }
+  };
+
+  const handleOnSendedChange = (value: number) => {
+    calculateCurrencyAmount(value, 'send', setSended, setReceived);
+  };
+
+  const handleOnReceivedChange = (value: number) => {
+    calculateCurrencyAmount(value, 'receive', setReceived, setSended);
   };
 
   return (
@@ -64,14 +101,14 @@ const Home = (props: Props) => {
           onChange={handleOnSendedChange}
           selectedCurrency={{
             name: 'Pesos Chilenos',
-            abbr_name: 'CLP',
+            code: 'CLP',
             flag_image: 'chile.png',
           }}
         />
         <CurrencyInput
           value={received > 0 ? received.toString() : ''}
           label="Recibirá"
-          onChange={(value) => setReceived(value)}
+          onChange={handleOnReceivedChange}
           selectedCurrency={currency}
           currencies={currencies}
           onCurrencyClick={handleOnCurrencyClick}

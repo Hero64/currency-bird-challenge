@@ -11,8 +11,8 @@ const CurrencyInput = (props: Props) => {
   const id = useId();
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const price = Number(e.target.value);
-    onChange(price);
+    const amount = Number(e.target.value);
+    onChange(amount);
   };
 
   const handleOnKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {

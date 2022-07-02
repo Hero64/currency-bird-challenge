@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   background-color: #f7f8fc;
+  box-sizing: border-box;
 }
 
 .main {
@@ -15,6 +16,7 @@
   padding: 40px 80px;
   border-radius: 20px;
   background-color: #fff;
+  box-sizing: border-box;
 }
 
 .title {

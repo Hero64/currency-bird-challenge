@@ -1,6 +1,6 @@
 export interface BaseCurrency {
   name: string;
-  abbr_name: string;
+  code: string;
   flag_image: string;
 }
 

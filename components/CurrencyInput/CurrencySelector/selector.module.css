@@ -35,6 +35,9 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .flag {

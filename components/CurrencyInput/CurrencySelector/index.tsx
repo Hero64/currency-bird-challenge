@@ -30,7 +30,7 @@ const CountryCurrencySelector = (props: Props) => {
         {currencies.length > 0 && <span className={styles.arrow}>▼</span>}
         <Image
           src={`/img/${selectedCurrency.flag_image}`}
-          alt={selectedCurrency.abbr_name}
+          alt={selectedCurrency.code}
           height={38}
           width={40}
         />
@@ -39,14 +39,14 @@ const CountryCurrencySelector = (props: Props) => {
         <ul className={styles.list}>
           {currencies.map((currency) => (
             <li
-              key={currency.abbr_name}
+              key={currency.code}
               className={styles.currency_element}
               onClick={handleOnCurrencyClick(currency)}
             >
               <span className={styles.flag}>{currency.name}</span>
               <Image
                 src={`/img/${currency.flag_image}`}
-                alt={currency.abbr_name}
+                alt={currency.code}
                 height={38}
                 width={40}
               />

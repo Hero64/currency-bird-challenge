@@ -1,0 +1,42 @@
+.container {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+}
+
+.button {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow {
+  padding-right: 15px;
+  color: #696969;
+  font-size: 20px;
+}
+
+.list {
+  position: absolute;
+  list-style: none;
+  padding: 20px;
+  min-width: 200px;
+  right: 0;
+  top: 100%;
+  margin: 0;
+  background-color: #fff;
+  border: 2px solid #696969;
+  border-radius: 3px;
+}
+
+.currency_element {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.flag {
+  margin-right: 15px;
+}

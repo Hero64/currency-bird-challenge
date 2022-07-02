@@ -1,0 +1,36 @@
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  overflow: hidden;
+  padding-left: 40px;
+  padding-right: 100px;
+  padding-top: 20px;
+  box-sizing: border-box;
+  height: 70px;
+  margin-bottom: 20px;
+  border: 2px solid #696969;
+  outline: none;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.label {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: 14px;
+}
+
+.sign {
+  font-weight: bold;
+  position: absolute;
+  top: 33px;
+  left: 20px;
+  font-size: 16px;
+}

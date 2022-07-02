@@ -6,7 +6,7 @@ import useRequest from '@/hooks/useRequest';
 
 import { CURRENCIES } from '@/constants/currencies';
 import { BaseCurrency } from '@/types/currency';
-import { Props, Response, CurrencySendType } from './types';
+import { Props, Response, CurrencySendType } from '@/types/home';
 
 import styles from './home.module.css';
 

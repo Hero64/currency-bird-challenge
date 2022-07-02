@@ -22,8 +22,6 @@ const CurrencyInput = (props: Props) => {
       'ArrowLeft',
     ]);
 
-    console.log(e.key);
-
     if (!/[0-9]/.test(e.key) && !availableKeyboards.has(e.key)) {
       e.preventDefault();
     }

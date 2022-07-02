@@ -6,7 +6,7 @@ const handleOnChange = jest.fn();
 const inputLabel = 'label test';
 const value = '1000';
 
-describe('Selector component', () => {
+describe('CurrencyInput component', () => {
   beforeEach(() => {
     render(
       <Input

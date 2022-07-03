@@ -7,11 +7,12 @@ import { QuoteType } from './type';
 
 export default connect().post((req: NextApiRequest, res: NextApiResponse) => {
   const { body } = req;
+  const { amount, currencyCode } = body;
+
   const type = req.query.type as QuoteType;
-  const { amount, currencyCode } = JSON.parse(body);
 
   if (!['send', 'receive'].includes(type)) {
-    return res.status(400);
+    return res.status(400).end();
   }
 
   res.json({

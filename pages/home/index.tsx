@@ -72,8 +72,8 @@ const Home = (props: Props) => {
   const handleOnCurrencyClick = (selectedCurrency: BaseCurrency) => {
     setCurrency(selectedCurrency);
 
-    if (received > 0) {
-      postCalculateQuote(received, 'receive', selectedCurrency.code, setSended);
+    if (sended > 0) {
+      postCalculateQuote(sended, 'send', selectedCurrency.code, setReceived);
     }
   };
 
